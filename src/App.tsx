@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import "./index.css";
+import { useState } from "react";
+import { UseState } from "./concept/hooks/UseState.tsx";
+import { UseEffect } from "./concept/hooks/UseEffect.tsx";
+import { UseMemo } from "./concept/hooks/UseMemo.tsx";
+import { UseCallback } from "./concept/hooks/UseCallback.tsx";
+import { LifeCycle } from "./concept/lifecycle/LifeCycle.tsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [step, setStep] = useState(0);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <main>
+            <h1>React 기본 개념</h1>
+            <p>숫자가 변하면 리랜더링 : {Math.random()}</p>
+            <div className="flex gap-5">
+                <button onClick={() => setStep(0)}>useState</button>
+                <button onClick={() => setStep(1)}>useEffect</button>
+                <button onClick={() => setStep(2)}>useMemo</button>
+                <button onClick={() => setStep(3)}>useCallback</button>
+                <button onClick={() => setStep(4)}>LifeCycle</button>
+                <button onClick={() => setStep(5)}>useMemo(자식)</button>
+            </div>
+            {(() => {
+                switch (step) {
+                    case 0:
+                        return <UseState />;
+                    case 1:
+                        return <UseEffect />;
+                    case 2:
+                        return <UseMemo />;
+                    case 3:
+                        return <UseCallback />;
+                    case 4:
+                        return <LifeCycle />;
+                    default:
+                        return null;
+                }
+            })()}
+        </main>
+    );
 }
 
-export default App
+export default App;
